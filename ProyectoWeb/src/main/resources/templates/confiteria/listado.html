@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>CineTek</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/techshop-57cef.appspot.com/o/proyecto%2FiStock-494317722.jpg?alt=media&token=e5af94b8-76ed-4787-bfa2-3843ce9aad44" height="280"  class="card-img-top" alt="Image 1"/>
+                        <div class="card-body"  style="border-top: solid 1px;">
+                            <h5 class="card-title">HotDog</h5>
+                            <p class="card-text">Valor: 2000CRC</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/techshop-57cef.appspot.com/o/proyecto%2FDiseno-sin-titulo-2023-05-29T190916.776.png?alt=media&token=e8c41c64-95ca-4fd7-8bca-323926b4d325"  height="280"  class="card-img-top"  style="height: 280px;"alt="Image 2"/>
+                        <div class="card-body" style="border-top: solid 1px;">
+                            <h5 class="card-title">Snickers</h5>
+                            <p class="card-text">Valor: 2000CRC</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/techshop-57cef.appspot.com/o/proyecto%2Fimages%20(2).jpeg?alt=media&token=c58f7428-96b0-4b54-b531-d71f1e34c1ee"  height="280" class="card-img-top" alt="Image 3"/>
+                        <div class="card-body" style="border-top: solid 1px;">
+                            <h5 class="card-title">Nachos</h5>
+                            <p class="card-text">Valor: 2000CRC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/techshop-57cef.appspot.com/o/proyecto%2Fimages.jpeg?alt=media&token=657eb42b-12b7-40aa-9fce-57fa26309248"  height="280" class="card-img-top" alt="Image 4"/>
+                        <div class="card-body" style="border-top: solid 1px;">
+                            <h5 class="card-title">Fresco</h5>
+                            <p class="card-text">Valor: 2000CRC</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/techshop-57cef.appspot.com/o/proyecto%2Fmms_crispy_chocolate_bar_by_giftedchild777_ddpefmy-fullview.jpg?alt=media&token=12b25c4e-b17a-4923-9ff5-1305f0733e5c" height="280"  class="card-img-top" alt="Image 5"/>
+                        <div class="card-body" style="border-top: solid 1px;">
+                            <h5 class="card-title">Chocolate</h5>
+                            <p class="card-text">Valor: 2000CRC</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/techshop-57cef.appspot.com/o/proyecto%2Fimages%20(3).jpeg?alt=media&token=2a39a49a-2521-4f56-920e-337bbb12dad1" height="280"  class="card-img-top" alt="Image 6"/>
+                        <div class="card-body" style="border-top: solid 1px;">
+                            <h5 class="card-title">Palomitas</h5>
+                            <p class="card-text">Valor: 2000CRC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+
+
+        <section th:replace="~{confiteria/fragmentos :: botonesAgregar}"/>
+        <section th:replace="~{confiteria/fragmentos :: agregarConfiteria}"/>
+        <section th:replace="~{confiteria/fragmentos :: listadoConfiterias}"/>
+
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>
