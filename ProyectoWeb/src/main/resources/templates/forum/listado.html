@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>CineTek</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-3" style="max-width: 100%;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://m.media-amazon.com/images/I/710Ce7S-fEL._SY445_.jpg" class="img-fluid rounded-start" alt="..."/>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Mi Villano Favorito 4</h5>
+                                    <p class="card-text">Gru, Lucy, Margo, Edith y Agnes le dan la bienvenida a un nuevo miembro a la familia, Gru Jr., quien está decidido a atormentar a su papá. Gru se enfrenta a un nuevo némesis llamado Maxime Le Mal y su novia Valentina que junto a su familia se ve obligada a huir.</p>
+                                    <p class="card-text">Duración: 94 Minutos </p>
+                                    <p class="card-text"><small class="text-body-secondary">Rating: 3.9</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <section th:replace="~{forum/fragmentos :: botonesAgregar}"></section>
+                    <section th:replace="~{forum/fragmentos :: agregarForum}"></section>
+                    <section th:replace="~{forum/fragmentos :: listadoForums}"></section>
+                </div>
+            </div>
+        </div>
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>

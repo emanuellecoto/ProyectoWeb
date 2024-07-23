@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>CineTek</title>
+        <meta charset="UTF-8"/>
+
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarForum">
+                            <i class="fas fa-plus"></i> [[#{forum.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 Fragmento para agregar forum, es la ventana modal -->
+        <section th:fragment="agregarForum">
+            <div id="agregarForum" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">[[#{forum.agregar}]]</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/forum/guardar}" th:object="${forum}"
+                              method="POST" class="was-validated" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="pelicula">[[#{forum.pelicula}]]</label>
+                                    <input type="text" class="form-control" name="pelicula" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="opinion">[[#{forum.descripcion}]]</label>
+                                    <input type="text" class="form-control" name="opinion" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="rating">[[#{forum.rating}]]</label>
+                                    <input type="text" class="form-control" name="rating" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="visto">[[#{forum.visto}]]</label>
+                                    <input class="form-check-input" type="checkbox" name="visto" id="activo"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3 Sección principal para mostrar la informaccion de la entidad forum -->
+        <section th:fragment="listadoForums"  id="forums">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{forum.listado}]]</h4>
+                            </div>
+                            <div th:if="${forums != null and !forums.empty}">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>[[#{forum.pelicula}]]</th>
+                                            <th>[[#{forum.descripcion}]]</th>
+                                            <th>[[#{forum.rating}]]</th>
+                                            <th></th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="forum: ${forums}">
+                                            <th>[[${forum.pelicula}]]</th>
+                                            <th>[[${forum.opinion}]]</th>
+                                            <th>[[${forum.rating}]]</th>
+                                            <td><a th:href="@{/forum/eliminar/}+${forum.idForum}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
+                                                <a th:href="@{/forum/modificar/}+${forum.idForum}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${forums == null or forums.empty}">
+                                <span>[[#{lista.vacia}]]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 Fragmento que se utiliza en la página modifca.html -->
+        <section th:fragment="editarForum">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/forum/guardar}" 
+                          th:object="${forum}"
+                          class="was-validated"                          
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idForum" th:field="*{idForum}"/>
+                        <section th:replace="~{forum/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>[[#{accion.actualizar}]]</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="pelicula">[[#{forum.pelicula}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="pelicula" th:field="*{pelicula}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="opinion">[[#{forum.descripcion}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="opinion" th:field="*{opinion}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="rating">[[#{forum.rating}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="rating" th:field="*{rating}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="visto">[[#{forum.visto}]]</label>
+                                                    <input class="form-check-input" type="checkbox" name="visto" id="visto"/>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a th:href="@{/forum/listado}" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">                                
+                        <a th:href="@{/forum/eliminar/}+${forum.idForum}"
+                           class="btn btn-danger">
+                            <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>
