@@ -1,0 +1,10 @@
+package com.proyectoWeb.dao;
+
+import com.proyectoWeb.domain.Venta;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface VentaDao
+       extends JpaRepository<Venta,Long>{
+    
+}

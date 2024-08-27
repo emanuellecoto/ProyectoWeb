@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>CineTek</title>
+        <meta charset="UTF-8"/>
+
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        
+        <section th:fragment="listadoEstrenos" class="bg-light">
+            <div class="row row-cols-4">
+                <div class="card"
+                     th:each = "s : ${estrenos}">
+                    <figure>
+                        <img th:src="${s.rutaImagen}" 
+                             alt="alt"
+                             height="400"/>
+                        <figcaption class="d-flex justify-content-evenly">
+                            
+                        </figcaption>
+                    </figure>
+
+                    <div class="card-header">
+                        <h4>[[${s.nombre}]]</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>[[${s.sinopsis}]]</p>
+                        <p>([[${s.director}]])</p>
+                        <p>([[${s.fechaEstreno}]])</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>

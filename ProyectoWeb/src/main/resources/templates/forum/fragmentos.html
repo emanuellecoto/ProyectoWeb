@@ -90,11 +90,11 @@
                                             <th>[[${forum.pelicula}]]</th>
                                             <th>[[${forum.opinion}]]</th>
                                             <th>[[${forum.rating}]]</th>
-                                            <td><a th:href="@{/forum/eliminar/}+${forum.idForum}"
-                                                   class="btn btn-danger">
+                                            <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/forum/eliminar/}+${forum.idForum}"
+                                                   class="btn">
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
                                                 <a th:href="@{/forum/modificar/}+${forum.idForum}"
-                                                   class="btn btn-success">
+                                                   class="btn">
                                                     <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
                                     </tbody>
                                 </table>

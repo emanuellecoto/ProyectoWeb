@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>CineTek</title>
+        <meta charset="UTF-8"/>
+
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        
+        <section th:fragment="listadoPeliculas" class="bg-light">
+            <div class="row row-cols-4" style="margin'top: 50px;">
+                <div class="card"
+                     th:each = "s : ${peliculas}">
+                    <figure>
+                        <img th:src="${s.rutaImagen}" 
+                             alt="alt"
+                             height="400"/>
+                        <figcaption class="d-flex justify-content-evenly">
+                            
+                        </figcaption>
+                    </figure>
+
+                    <div class="card-header">
+                        <h4>[[${s.titulo}]]</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>[[${s.descripcion}]]</p>
+                        <p>([[${s.director}]])</p>
+                        <p>([[${s.fechaEstreno}]])</p>
+                        <p>([[${s.duracionMinutos}]]) Minutos</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a style="color:black; margin-left:40%;"  th:href="@{/factura/listado}" sec:authorize="isAuthenticated()"><button type="button" class="btn btn-secondary btn-lg">[[#{plantilla.comprar}]]</button></a>
+        </section>
+        
+        
+        
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>
